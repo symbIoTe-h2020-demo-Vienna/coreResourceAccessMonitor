@@ -1,0 +1,59 @@
+buildscript {
+    ext {
+        springBootVersion = '1.4.0.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath 'org.junit.platform:junit-platform-gradle-plugin:1.0.0-M2'
+    }
+}
+
+ext.junitJupiterVersion = '5.0.0-M2'
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+apply plugin: 'org.junit.platform.gradle.plugin'
+
+
+jar {
+    baseName = 'coreResourceAccessMonitor'
+    version =  '0.0.1'
+}
+
+repositories {
+    mavenCentral()
+    maven { 
+        url "https://jitpack.io" 
+    }
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    compile('org.springframework.cloud:spring-cloud-starter-config')
+    compile('org.springframework.cloud:spring-cloud-starter-eureka')
+    compile('org.springframework.cloud:spring-cloud-starter-zipkin')
+    compile('org.springframework.cloud:spring-cloud-starter-stream-rabbit')
+    compile('org.springframework.boot:spring-boot-starter-data-rest')
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile('com.google.code.gson:gson:2.7')
+    compile('com.google.guava:guava:19.+')
+    compile('com.github.symbiote-h2020:mediationFramework:b2a4829d3f')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+
+    // JUnit Jupiter API and TestEngine implementation
+    testCompile("org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}")
+    testRuntime("org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}")
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:Brixton.SR5"
+    }
+}
