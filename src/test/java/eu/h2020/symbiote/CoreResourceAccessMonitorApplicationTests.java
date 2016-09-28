@@ -1,20 +1,28 @@
 package eu.h2020.symbiote;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
+// import org.junit.jupiter.api.Test;
+// import org.junit.jupiter.api.BeforeEach;
+// import org.junit.jupiter.api.DisplayName;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.web.client.HttpStatusCodeException;
+
+import org.junit.Test;
+import org.junit.Before;
 
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.http.MediaType;
 import org.springframework.http.HttpMethod;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.test.web.client.MockRestServiceServer;
-import org.springframework.test.context.web.WebAppConfiguration;
 
 import java.nio.charset.Charset;
 import java.util.Map;
@@ -28,15 +36,15 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers .method;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
-import static org.springframework.test.web.client.response.MockRestResponseCreators.withServerError;
-import static org.springframework.test.web.client.response.MockRestResponseCreators.withStatus;
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
-@WebAppConfiguration
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringBootTest(webEnvironment=WebEnvironment.RANDOM_PORT)
 public class CoreResourceAccessMonitorApplicationTests {
 
+
+	private static final Logger LOG = LoggerFactory
+						.getLogger(CoreResourceAccessMonitorApplicationTests.class);
     private MediaType contentType = new MediaType(MediaType.APPLICATION_JSON.getType(),
             MediaType.APPLICATION_JSON.getSubtype(),
             Charset.forName("utf8"));
@@ -52,7 +60,7 @@ public class CoreResourceAccessMonitorApplicationTests {
     private MockMvc mockMvc;
 
 	// Execute the Setup method before the test.
-	@BeforeEach
+	@Before
 	public void setUp() {
 
 		mockMvc = webAppContextSetup(webApplicationContext).build();
@@ -62,20 +70,39 @@ public class CoreResourceAccessMonitorApplicationTests {
 	}
 
 	@Test
-	@DisplayName("Testing Access Controller's GET method")
+	//@DisplayName("Testing Access Controller's GET method")
 	public void testGet() throws Exception {
 
-		mockServer.expect(requestTo("http://localhost:8080/urls/"))
+		mockServer.expect(requestTo("http://symbIoTe.com/urls"))
 				.andExpect(method(HttpMethod.GET))
-				.andRespond(withSuccess("{}", MediaType.APPLICATION_JSON));
+				.andRespond(withSuccess("{ \"1\" : \"2\", \"2\" : \"3\" }", MediaType.APPLICATION_JSON));
 
-
-        mockMvc.perform(get("http://localhost:8080/urls/"))
+        mockMvc.perform(get("/access/1"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(contentType))
-                .andExpect(jsonPath("$", hasSize(0)));
+                .andExpect(jsonPath("$.1", is("11")))
+                .andExpect(jsonPath("$.2", is("12")));
 
 		mockServer.verify();
 
 	}
-}
+
+	@Test
+	//@DisplayName("Testing Access Controller's GET method")
+	public void testPost() throws Exception {
+
+		mockServer.expect(requestTo("http://symbIoTe.com/urls"))
+				.andExpect(method(HttpMethod.GET))
+				.andRespond(withSuccess("{ \"1\" : \"2\", \"2\" : \"3\" }", MediaType.APPLICATION_JSON));
+
+        mockMvc.perform(post("/access")
+        		.content("{ \"1\" : \"200\", \"2\" : \"300\" }")
+        		.contentType(contentType))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(contentType))
+                .andExpect(jsonPath("$.1", is("11")))
+                .andExpect(jsonPath("$.2", is("12")));
+
+		mockServer.verify();
+
+	}}
