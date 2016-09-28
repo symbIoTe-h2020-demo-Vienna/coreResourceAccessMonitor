@@ -77,7 +77,7 @@ public class CoreResourceAccessMonitorApplicationTests {
 				.andExpect(method(HttpMethod.GET))
 				.andRespond(withSuccess("{ \"1\" : \"2\", \"2\" : \"3\" }", MediaType.APPLICATION_JSON));
 
-        mockMvc.perform(get("/access/1"))
+        mockMvc.perform(get("/cram_api/resource_urls/1"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(contentType))
                 .andExpect(jsonPath("$.1", is("11")))
@@ -95,7 +95,7 @@ public class CoreResourceAccessMonitorApplicationTests {
 				.andExpect(method(HttpMethod.GET))
 				.andRespond(withSuccess("{ \"1\" : \"2\", \"2\" : \"3\" }", MediaType.APPLICATION_JSON));
 
-        mockMvc.perform(post("/access")
+        mockMvc.perform(post("/cram_api/resource_urls")
         		.content("{ \"1\" : \"200\", \"2\" : \"300\" }")
         		.contentType(contentType))
                 .andExpect(status().isOk())

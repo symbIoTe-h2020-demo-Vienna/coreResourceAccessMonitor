@@ -12,12 +12,13 @@ import java.util.Map;
 import java.util.HashMap;
 
 @RestController
+@RequestMapping("/cram_api")
 public class AccessController {
 
     @Autowired
     private RestTemplate restTemplate;
 
-    @RequestMapping(value="/access/{resourceIdList}", method=RequestMethod.GET)
+    @RequestMapping(value="/resource_urls/{resourceIdList}", method=RequestMethod.GET)
     @ResponseBody
     public Map<String, String> accessResources(@PathVariable String[] resourceIdList) {
 
@@ -36,7 +37,7 @@ public class AccessController {
         return ids;
     }
 
-    @RequestMapping(value="/access", method=RequestMethod.POST)
+    @RequestMapping(value="/resource_urls", method=RequestMethod.POST)
     @ResponseBody
     public Map<String, String> accessResources(@RequestBody Map<String, String> resourceIdMap) {
 
