@@ -1,4 +1,4 @@
-package eu.h2020.symbiote;
+package eu.h2020.symbiote.controller;
 
 // import org.junit.jupiter.api.Test;
 // import org.junit.jupiter.api.BeforeEach;
