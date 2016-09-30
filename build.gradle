@@ -47,6 +47,7 @@ dependencies {
     compile('com.google.guava:guava:19.+')
     compile('org.springframework.boot:spring-boot-starter-data-mongodb')
     compile('com.github.symbiote-h2020:mediationFramework:b2a4829d3f')
+    compile('com.googlecode.json-simple:json-simple:1.1.1')
     testCompile('org.springframework.boot:spring-boot-starter-test')
 
     // JUnit Jupiter API and TestEngine implementation

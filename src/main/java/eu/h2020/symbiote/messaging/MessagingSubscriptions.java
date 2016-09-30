@@ -14,20 +14,56 @@ import java.util.concurrent.TimeoutException;
  */
 public class MessagingSubscriptions {
 
-    private static String SENSOR_REGISTERED_QUEUE = "SensorRegistered";
+    private static String PLATFORM_CREATED_QUEUE = "CramPlatformCreated";
+    private static String RESOURCE_CREATED_QUEUE = "CramResourceCreated";
 
     private static Log log = LogFactory.getLog(MessagingSubscriptions.class);
 
+    /**
+     * Use that method if you want to subscribe to receive messages
+     *
+     * @throws IOException
+     * @throws TimeoutException
+     */
     public static void subscribeForCRAM() throws IOException, TimeoutException {
-        subscribeSensorRegistered(SENSOR_REGISTERED_QUEUE);
+        subscribePlatformCreated(PLATFORM_CREATED_QUEUE);
+        subscribeResourceCreated(RESOURCE_CREATED_QUEUE);
     }
 
-    public static void subscribeSensorRegistered( String queueName ) throws IOException, TimeoutException {
+    /**
+     * Basic consumer of messages thrown into queue named queueName, related to Platform object.
+     *
+     * @param queueName
+     * @throws IOException
+     * @throws TimeoutException
+     */
+    public static void subscribePlatformCreated( String queueName ) throws IOException, TimeoutException {
         Channel channel = getChannel(queueName);
-        SensorRegisteredConsumer consumer = new SensorRegisteredConsumer(channel);
+        PlatformCreatedConsumer consumer = new PlatformCreatedConsumer(channel);
         channel.basicConsume(queueName, true, consumer);
     }
 
+    /**
+     * Basic consumer of messages thrown into queue named queueName, related to Resource (Sensor) object.
+     *
+     * @param queueName
+     * @throws IOException
+     * @throws TimeoutException
+     */
+    public static void subscribeResourceCreated(String queueName ) throws IOException, TimeoutException {
+        Channel channel = getChannel(queueName);
+        ResourceCreatedConsumer consumer = new ResourceCreatedConsumer(channel);
+        channel.basicConsume(queueName, true, consumer);
+    }
+
+    /**
+     * Returns channel for rabbit messaging
+     *
+     * @param queueName
+     * @return
+     * @throws IOException
+     * @throws TimeoutException
+     */
     private static Channel getChannel( String queueName ) throws IOException, TimeoutException {
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("127.0.0.1");

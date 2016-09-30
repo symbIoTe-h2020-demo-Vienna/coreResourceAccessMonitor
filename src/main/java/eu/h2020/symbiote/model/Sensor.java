@@ -15,6 +15,7 @@ public class Sensor {
     private String name;
     private String owner;
     private String description;
+    @DBRef
     private Location location;
     private String observedProperty;
     @DBRef

@@ -31,10 +31,20 @@ public abstract class SymbioteMessageConsumer<T> extends DefaultConsumer {
         super(channel);
     }
 
+
     public Type getType() {
         return type;
     }
 
+    /**
+     * Method extracts Object from received JSON message and pass it to handleEventObject method, that lets use that object
+     *
+     * @param consumerTag
+     * @param envelope
+     * @param properties
+     * @param body
+     * @throws IOException
+     */
     @Override
     public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body)
             throws IOException {
@@ -47,5 +57,4 @@ public abstract class SymbioteMessageConsumer<T> extends DefaultConsumer {
     }
 
     protected abstract void handleEventObject(T deliveredObject);
-
 }

@@ -1,4 +1,4 @@
-package eu.h2020.symbiote;
+package eu.h2020.symbiote.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,7 +33,7 @@ public class AccessController {
 
         for(Map.Entry<String, String> id : ids.entrySet())
             ids.put(id.getKey(), String.valueOf(Integer.parseInt(id.getValue()) + 9));
-        // Map<String, String> ids = new HashMap();
+        
         return ids;
     }
 

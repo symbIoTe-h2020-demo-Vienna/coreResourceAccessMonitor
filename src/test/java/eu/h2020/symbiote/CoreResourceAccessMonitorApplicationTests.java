@@ -1,4 +1,4 @@
-package eu.h2020.symbiote.controller;
+package eu.h2020.symbiote;
 
 // import org.junit.jupiter.api.Test;
 // import org.junit.jupiter.api.BeforeEach;
@@ -105,4 +105,5 @@ public class CoreResourceAccessMonitorApplicationTests {
 
 		mockServer.verify();
 
-	}}
+	}
+}
