@@ -9,15 +9,22 @@ import org.apache.commons.logging.LogFactory;
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 
+import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import eu.h2020.symbiote.repository.PlatformRepository;
+
 /**
  * Created by Mael on 07/09/2016.
  */
+
 public class MessagingSubscriptions {
 
     private static String PLATFORM_CREATED_QUEUE = "CramPlatformCreated";
     private static String RESOURCE_CREATED_QUEUE = "CramResourceCreated";
 
     private static Log log = LogFactory.getLog(MessagingSubscriptions.class);
+
 
     /**
      * Use that method if you want to subscribe to receive messages

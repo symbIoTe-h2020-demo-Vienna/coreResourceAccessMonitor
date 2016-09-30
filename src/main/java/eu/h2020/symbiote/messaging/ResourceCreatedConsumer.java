@@ -1,11 +1,12 @@
 package eu.h2020.symbiote.messaging;
 
 import com.rabbitmq.client.Channel;
-import eu.h2020.symbiote.model.Sensor;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
+import eu.h2020.symbiote.model.Sensor;
 import eu.h2020.symbiote.repository.SensorRepository;
 
 

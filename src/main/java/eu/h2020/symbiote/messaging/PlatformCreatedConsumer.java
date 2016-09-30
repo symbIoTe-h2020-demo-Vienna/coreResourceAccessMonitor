@@ -1,17 +1,19 @@
 package eu.h2020.symbiote.messaging;
 
 import com.rabbitmq.client.Channel;
-import eu.h2020.symbiote.model.Platform;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import eu.h2020.symbiote.model.Platform;
 import eu.h2020.symbiote.repository.PlatformRepository;
 
 /**
  * Created by Mael on 07/09/2016.
  */
-
+//@Service
 public class PlatformCreatedConsumer extends SymbioteMessageConsumer<Platform> {
 
     private static Log log = LogFactory.getLog(PlatformCreatedConsumer.class);
@@ -24,6 +26,8 @@ public class PlatformCreatedConsumer extends SymbioteMessageConsumer<Platform> {
      *
      * @param channel the channel to which this consumer is attached
      */
+
+    @Autowired
     public PlatformCreatedConsumer(Channel channel) {
         super(channel);
     }
