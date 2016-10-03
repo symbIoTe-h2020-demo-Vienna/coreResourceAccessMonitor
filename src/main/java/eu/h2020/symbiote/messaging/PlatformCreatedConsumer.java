@@ -10,10 +10,16 @@ import org.springframework.stereotype.Service;
 import eu.h2020.symbiote.model.Platform;
 import eu.h2020.symbiote.repository.PlatformRepository;
 
+import org.springframework.web.client.RestTemplate;
+import org.springframework.http.MediaType;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
+
 /**
  * Created by Mael on 07/09/2016.
  */
-//@Service
 public class PlatformCreatedConsumer extends SymbioteMessageConsumer<Platform> {
 
     private static Log log = LogFactory.getLog(PlatformCreatedConsumer.class);
@@ -40,10 +46,19 @@ public class PlatformCreatedConsumer extends SymbioteMessageConsumer<Platform> {
      */
     @Override
     protected void handleEventObject(Platform deliveredObject) {
-        System.out.println("CRA received message about created platform with id: " + deliveredObject.getId());
+        System.out.println("CRAM received message about created platform with id: " + deliveredObject.getId());
         
         //save (deliveredObject) in database
-        platformRepo.save(deliveredObject);
+        //platformRepo.save(deliveredObject);
 
+        RestTemplate restTemplate = new RestTemplate();
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        HttpEntity entity = new HttpEntity(deliveredObject, headers);
+
+        ResponseEntity<String> out = restTemplate.exchange("http://localhost:8202/cram_api/platform", HttpMethod.POST, entity,
+             String.class);    
     }
 }
