@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 
 import java.util.Map;
 import java.util.HashMap;
+import java.util.List;
 import java.net.URL;
 import java.net.MalformedURLException;
 
@@ -63,12 +64,12 @@ public class AccessController {
 
     @RequestMapping(value="/resource_urls", method=RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity<Map<String, String>> accessResources(@RequestBody Map<String, String> resourceIdMap) throws MalformedURLException {
+    public ResponseEntity<Map<String, String>> accessResources(@RequestBody List<String> resourceIdList) throws MalformedURLException {
 
         Map<String, String> ids = new HashMap();
 
-        for(Map.Entry<String, String> id : resourceIdMap.entrySet()) {
-            Sensor sensor = sensorRepo.findOne(id.getKey());
+        for(String id : resourceIdList) {
+            Sensor sensor = sensorRepo.findOne(id);
             if (sensor != null)
             {
                 URL url = new URL(sensor.getPlatform().getResourceAccessProxyUrl().toString() + '/' 
