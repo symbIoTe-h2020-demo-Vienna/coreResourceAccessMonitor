@@ -55,7 +55,7 @@ public class ResourceCreatedConsumer extends SymbioteMessageConsumer<Sensor> {
 
         HttpEntity entity = new HttpEntity(deliveredObject, headers);
 
-        ResponseEntity<String> out = restTemplate.exchange("http://localhost:8202/cram_api/resource", HttpMethod.POST, entity,
+        ResponseEntity<String> out = restTemplate.exchange("http://localhost:8300/cram_api/resource", HttpMethod.POST, entity,
              String.class);    
     }
 }
