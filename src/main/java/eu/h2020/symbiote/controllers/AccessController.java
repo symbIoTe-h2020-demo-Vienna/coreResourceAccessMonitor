@@ -90,18 +90,4 @@ public class AccessController {
 
         return new ResponseEntity<Map<String, String>> (ids, HttpStatus.OK);
     }
-
-    @RequestMapping(value="/resource", method=RequestMethod.POST)
-    public void savePlatform(@RequestBody Sensor sensor) {
-
-        log.info(" AccessController received new resource info with id " + sensor.getId());
-        sensorRepo.save(sensor);
-    }
-
-    @RequestMapping(value="/platform", method=RequestMethod.POST)
-    public void savePlatform(@RequestBody Platform platform) {
-
-        log.info(" AccessController received new resource info with id " + platform.getId());
-        platformRepo.save(platform);
-    }
 }
