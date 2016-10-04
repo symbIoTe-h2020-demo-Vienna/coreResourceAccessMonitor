@@ -9,6 +9,9 @@ jdk:
 
 services:
   - mongodb
+  - rabbitmq
+
+sudo: required
 
 branches:
   only:
