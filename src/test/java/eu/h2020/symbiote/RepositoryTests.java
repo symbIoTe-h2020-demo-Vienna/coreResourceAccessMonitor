@@ -88,7 +88,7 @@ public class RepositoryTests {
 
 		platformCreatedConsumer.handleDelivery("consumerTag", new Envelope(1, true, "", ""), new AMQP.BasicProperties(), platformObj.toString().getBytes("UTF-8"));
 		Platform result = platformRepo.findOne("55");
-		assertEquals(result.getName(), "platform");
+		assertEquals(result.getName(), "platform1");
 	}
 
 	@Test
