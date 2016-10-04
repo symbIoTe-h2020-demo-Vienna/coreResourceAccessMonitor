@@ -37,9 +37,6 @@ public class AccessController {
     private static Log log = LogFactory.getLog(AccessController.class);
 
     @Autowired
-    private RestTemplate restTemplate;
-
-    @Autowired
     private PlatformRepository platformRepo;
 
     @Autowired
