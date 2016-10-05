@@ -47,8 +47,8 @@ push_uri="https://$GITHUB_SECRET_TOKEN@github.com/$GITHUB_REPO"
 #sleep 30
 
 # Redirect to /dev/null to avoid secret leakage
-printf 'git push %s %s >/dev/null 2>&1\n' "$push_uri" "$BRANCH_TO_MERGE_INTO"
+printf 'git push %s %s >/dev/null 2>&1\n' "$GITHUB_REPO" "$BRANCH_TO_MERGE_INTO"
 git push "$push_uri" "$BRANCH_TO_MERGE_INTO" >/dev/null 2>&1
 
-printf 'git push %s :%s >/dev/null 2>&1' "$push_uri" "$TRAVIS_BRANCH"
+printf 'git push %s :%s >/dev/null 2>&1' "$GITHUB_REPO" "$TRAVIS_BRANCH"
 git push "$push_uri" :"$TRAVIS_BRANCH" >/dev/null 2>&1
