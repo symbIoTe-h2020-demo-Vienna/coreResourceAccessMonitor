@@ -10,13 +10,10 @@ import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.IntegrationTest;
 
 import java.net.URL;
-import java.util.List;
 import org.json.simple.JSONObject;
 
 import com.rabbitmq.client.Envelope;
@@ -30,7 +27,6 @@ import java.util.concurrent.TimeoutException;
 
 import eu.h2020.symbiote.repository.SensorRepository;
 import eu.h2020.symbiote.repository.PlatformRepository;
-import eu.h2020.symbiote.repository.RepositoryManager;
 import eu.h2020.symbiote.model.*;
 import eu.h2020.symbiote.messaging.ResourceCreatedConsumer;
 import eu.h2020.symbiote.messaging.PlatformCreatedConsumer;
@@ -59,8 +55,6 @@ public class RepositoryTests {
 	@Autowired
 	private PlatformRepository platformRepo;
 
-	@Autowired
-	private RepositoryManager repositoryManager;
 
 	@Before
 	public void setup() throws IOException, TimeoutException {
