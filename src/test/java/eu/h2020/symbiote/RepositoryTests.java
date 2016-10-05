@@ -13,6 +13,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.boot.test.IntegrationTest;
 
 import java.net.URL;
 import java.util.List;
@@ -41,6 +42,7 @@ import static org.junit.Assert.assertEquals;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes={CoreResourceAccessMonitorApplication.class})
+@IntegrationTest({"eureka.client.enabled=false"})
 public class RepositoryTests {
 
 
