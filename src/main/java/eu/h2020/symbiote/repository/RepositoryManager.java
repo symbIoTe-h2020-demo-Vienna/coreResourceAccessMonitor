@@ -7,8 +7,6 @@ import org.springframework.util.Assert;
 
 import eu.h2020.symbiote.model.Platform;
 import eu.h2020.symbiote.model.Sensor;
-import eu.h2020.symbiote.repository.PlatformRepository;
-import eu.h2020.symbiote.repository.SensorRepository;
 
 /**
  * Created by tipech on 04/10/2016.
