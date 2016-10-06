@@ -52,8 +52,7 @@ public class AccessController {
             Sensor sensor = sensorRepo.findOne(id);
             if (sensor != null)
             {
-                URL url = new URL(sensor.getPlatform().getResourceAccessProxyUrl().toString() + '/' 
-                        + sensor.getPlatform().getId() + '/' + sensor.getId());
+                URL url = sensor.getResourceURL();
                 ids.put(sensor.getId(), url.toString());
                 log.info(" AccessController received new resource with id " + sensor.getId() +
                      " and url " + url.toString());
@@ -77,8 +76,7 @@ public class AccessController {
             Sensor sensor = sensorRepo.findOne(iterator.next());
             if (sensor != null)
             {
-                URL url = new URL(sensor.getPlatform().getResourceAccessProxyUrl().toString() + '/' 
-                        + sensor.getPlatform().getId() + '/' + sensor.getId());
+                URL url = sensor.getResourceURL();
                 ids.put(sensor.getId(), url.toString());
                 log.info(" AccessController find a resource with id " + sensor.getId() +
                      " and url " + url.toString());

@@ -4,6 +4,9 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.net.URL;
+import java.util.List;
+
 /**
  * Created by jawora on 22.09.16.
  */
@@ -15,32 +18,35 @@ public class Sensor {
     private String name;
     private String owner;
     private String description;
-    @DBRef
     private Location location;
-    private String observedProperty;
-    @DBRef
+    private List<String> observedProperties;
     private Platform platform;
+    private URL resourceURL;
 
     public Sensor() {
     }
 
-    public Sensor(String name, String owner, String description, Location location, String observedProperty, Platform platform) {
+    public Sensor(String name, String owner, String description, Location location, List<String> observedProperties,
+                  Platform platform, URL resourceURL) {
         this.name = name;
         this.owner = owner;
         this.description = description;
         this.location = location;
-        this.observedProperty = observedProperty;
+        this.observedProperties = observedProperties;
         this.platform = platform;
+        this.resourceURL = resourceURL;
     }
 
-    public Sensor(String id, String name, String owner, String description, Location location, String observedProperty, Platform platform) {
+    public Sensor(String id, String name, String owner, String description, Location location,
+                  List<String> observedProperties, Platform platform, URL resourceURL) {
         this.id = id;
         this.name = name;
         this.owner = owner;
         this.description = description;
         this.location = location;
-        this.observedProperty = observedProperty;
+        this.observedProperties = observedProperties;
         this.platform = platform;
+        this.resourceURL = resourceURL;
     }
 
     public String getId() {
@@ -83,12 +89,12 @@ public class Sensor {
         this.location = location;
     }
 
-    public String getObservedProperty() {
-        return observedProperty;
+    public List<String> getObservedProperties() {
+        return observedProperties;
     }
 
-    public void setObservedProperty(String observedProperty) {
-        this.observedProperty = observedProperty;
+    public void setObservedProperties(List<String> observedProperties) {
+        this.observedProperties = observedProperties;
     }
 
     public Platform getPlatform() {
@@ -98,4 +104,8 @@ public class Sensor {
     public void setPlatform(Platform platform) {
         this.platform = platform;
     }
+
+    public URL getResourceURL() {return resourceURL;}
+
+    public void setResourceURL(URL resourceURL) {this.resourceURL = resourceURL;}
 }

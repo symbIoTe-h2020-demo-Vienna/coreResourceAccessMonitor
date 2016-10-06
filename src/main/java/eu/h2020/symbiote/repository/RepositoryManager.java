@@ -1,6 +1,7 @@
 package eu.h2020.symbiote.repository;
 
-
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
@@ -14,10 +15,10 @@ import eu.h2020.symbiote.model.Sensor;
 @Component
 public class RepositoryManager {
 
-    @Autowired
+    private static Log log = LogFactory.getLog(RepositoryManager.class);
+
     private static PlatformRepository platformRepository;
 
-    @Autowired
     private static SensorRepository sensorRepository;
 
     @Autowired
@@ -33,11 +34,13 @@ public class RepositoryManager {
     public static void savePlatform(Platform deliveredObject) {
 
 		platformRepository.save(deliveredObject);
+        log.info("Platform saved to database!");
     }
 
     public static void saveSensor(Sensor deliveredObject) {
 
 		sensorRepository.save(deliveredObject);
+        log.info("Sensor saved to database!");
     }
 
 }

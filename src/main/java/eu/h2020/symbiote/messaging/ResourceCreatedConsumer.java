@@ -4,8 +4,6 @@ import com.rabbitmq.client.Channel;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import eu.h2020.symbiote.model.Sensor;
 import eu.h2020.symbiote.repository.RepositoryManager;
 
@@ -34,8 +32,7 @@ public class ResourceCreatedConsumer extends SymbioteMessageConsumer<Sensor> {
      */
     @Override
     protected void handleEventObject(Sensor deliveredObject) {
-        System.out.println("CRAM received message about created resource with id: " + deliveredObject.getId());
-        
+        log.info("CRAM received message about created resource with id: " + deliveredObject.getId());
         //save (deliveredObject) in database
         RepositoryManager.saveSensor(deliveredObject);   
     }

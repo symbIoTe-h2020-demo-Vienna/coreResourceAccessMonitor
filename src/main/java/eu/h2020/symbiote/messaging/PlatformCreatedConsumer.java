@@ -4,8 +4,6 @@ import com.rabbitmq.client.Channel;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import eu.h2020.symbiote.model.Platform;
 import eu.h2020.symbiote.repository.RepositoryManager;
 
@@ -26,7 +24,6 @@ public class PlatformCreatedConsumer extends SymbioteMessageConsumer<Platform> {
         super(channel);
     }
 
-
     /**
      * Method implementation used for actions with object passed in delivered message (Platform in JSON in this case)
      *
@@ -34,8 +31,7 @@ public class PlatformCreatedConsumer extends SymbioteMessageConsumer<Platform> {
      */
     @Override
     protected void handleEventObject(Platform deliveredObject) {
-        System.out.println("CRAM received message about created platform with id: " + deliveredObject.getId());
-        
+        log.info("CRAM received message about created platform with id: " + deliveredObject.getId());
         //save (deliveredObject) in database
         RepositoryManager.savePlatform(deliveredObject);   
     }
