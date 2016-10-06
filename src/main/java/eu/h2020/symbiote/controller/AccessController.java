@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +31,7 @@ import eu.h2020.symbiote.repository.SensorRepository;
 import eu.h2020.symbiote.model.Sensor;
 import eu.h2020.symbiote.model.Platform;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/cram_api")
 public class AccessController {
@@ -52,10 +54,10 @@ public class AccessController {
             Sensor sensor = sensorRepo.findOne(id);
             if (sensor != null)
             {
-                // URL url = sensor.getResourceURL();
-                // ids.put(sensor.getId(), url.toString());
-                // log.info(" AccessController received new resource with id " + sensor.getId() +
-                //      " and url " + url.toString());
+                URL url = sensor.getResourceURL();
+                ids.put(sensor.getId(), url.toString());
+                log.info(" AccessController received new resource with id " + sensor.getId() +
+                     " and url " + url.toString());
             }
 
         }
@@ -86,3 +88,4 @@ public class AccessController {
         return new ResponseEntity<Map<String, String>> (ids, HttpStatus.OK);
     }
 }
+
