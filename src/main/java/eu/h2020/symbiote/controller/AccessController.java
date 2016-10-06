@@ -52,10 +52,10 @@ public class AccessController {
             Sensor sensor = sensorRepo.findOne(id);
             if (sensor != null)
             {
-                URL url = sensor.getResourceURL();
-                ids.put(sensor.getId(), url.toString());
-                log.info(" AccessController received new resource with id " + sensor.getId() +
-                     " and url " + url.toString());
+                // URL url = sensor.getResourceURL();
+                // ids.put(sensor.getId(), url.toString());
+                // log.info(" AccessController received new resource with id " + sensor.getId() +
+                //      " and url " + url.toString());
             }
 
         }
