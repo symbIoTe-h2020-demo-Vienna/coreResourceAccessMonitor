@@ -44,7 +44,7 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-data-rest')
     compile('org.springframework.boot:spring-boot-starter-web')
     compile('org.springframework.boot:spring-boot-starter-data-mongodb')
-    compile('org.springframework.boot:spring-boot-starter-hateoas')
+    //compile('org.springframework.boot:spring-boot-starter-hateoas')
     compile('com.google.code.gson:gson:2.7')
     compile('com.google.guava:guava:19.+')
     compile('com.github.symbiote-h2020:mediationFramework:b2a4829d3f')
