@@ -33,6 +33,6 @@ public class PlatformCreatedConsumer extends SymbioteMessageConsumer<Platform> {
     protected void handleEventObject(Platform deliveredObject) {
         log.info("CRAM received message about created platform with id: " + deliveredObject.getId());
         //save (deliveredObject) in database
-        RepositoryManager.savePlatform(deliveredObject);   
+        // RepositoryManager.savePlatform(deliveredObject);   
     }
 }
