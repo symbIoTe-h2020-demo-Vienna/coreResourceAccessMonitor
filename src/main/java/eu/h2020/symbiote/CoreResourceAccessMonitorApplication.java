@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.sleuth.sampler.AlwaysSampler;
 
 import eu.h2020.symbiote.messaging.MessagingSubscriptions;
 
@@ -28,6 +29,11 @@ public class CoreResourceAccessMonitorApplication {
         } catch (Exception e) {
             log.error("Error occured during subscribing from Core Resource Access Monitor", e);
         }
+    }
+
+    @Bean
+    public AlwaysSampler defaultSampler() {
+        return new AlwaysSampler();
     }
 
 }

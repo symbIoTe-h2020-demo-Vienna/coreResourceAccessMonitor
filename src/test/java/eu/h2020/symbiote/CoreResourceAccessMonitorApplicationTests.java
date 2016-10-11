@@ -72,7 +72,7 @@ public class CoreResourceAccessMonitorApplicationTests {
 	}
 
 	@Test
-	//@DisplayName("Testing Access Controller's GET method")
+	// @DisplayName("Testing Access Controller's GET method")
 	public void testGet() throws Exception {
 
         mockMvc.perform(get("/cram_api/resource_urls/sensor_id,sensor_id2"))
@@ -84,7 +84,7 @@ public class CoreResourceAccessMonitorApplicationTests {
 	}
 
 	@Test
-	//@DisplayName("Testing Access Controller's GET method")
+	// @DisplayName("Testing Access Controller's GET method")
 	public void testPost() throws Exception {
 
         mockMvc.perform(post("/cram_api/resource_urls")
