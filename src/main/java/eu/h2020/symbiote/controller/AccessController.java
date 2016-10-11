@@ -56,7 +56,7 @@ public class AccessController {
             {
                 URL url = sensor.getResourceURL();
                 ids.put(sensor.getId(), url.toString());
-                log.info("SymbIoTe-h2020: AccessController found a resource with id " + sensor.getId() +
+                log.info("AccessController found a resource with id " + sensor.getId() +
                      " and url " + url.toString());
             }
 
@@ -80,7 +80,7 @@ public class AccessController {
             {
                 URL url = sensor.getResourceURL();
                 ids.put(sensor.getId(), url.toString());
-                log.info("SymbIoTe-h2020: AccessController found a resource with id " + sensor.getId() +
+                log.info("AccessController found a resource with id " + sensor.getId() +
                      " and url " + url.toString());
             }
         }
